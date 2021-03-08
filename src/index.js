@@ -7,9 +7,10 @@ app.use(express.json());
 
 const customers = [];
 
+// Criação e verificação de existencia da conta
 app.post('/account', (request, response) => {
   const { cpf, name } = request.body;
-  const customerAlreadyExists = customers.some(customer => customer.cpf === cpf); // verificar existencia de cpf
+  const customerAlreadyExists = customers.some(customer => customer.cpf === cpf);
 
   if (customerAlreadyExists)
     return response.status(400).json({ error: "Customer already exists!" });
@@ -17,7 +18,7 @@ app.post('/account', (request, response) => {
   customers.push({
     cpf,
     name,
-    id: uuidv4(), // Criação do ID através da v4 (utilizando números randômicos)
+    id: uuidv4(),
     statement: []
   });
 
@@ -26,7 +27,6 @@ app.post('/account', (request, response) => {
 
 // Busca de extrato do cliente
 app.get('/statement/:cpf', (request, response) => {
-  // para fazer a busca é necessário saber qual o cliente, portanto, necessário fornecer o cpf através dos route params
   const { cpf } = request.params;
   const customer = customers.find(customer => customer.cpf === cpf);
 
