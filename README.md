@@ -18,7 +18,7 @@
 ## Regras de negócio
 
 - [x] NÃO cadastrar conta com CPF já existente
-- [x] NÃO fazer depósito em conta já existente
+- [x] NÃO fazer depósito em conta não existente
 - [] NÃO buscar extrato em conta não existente
 - [] NÃO fazer saque em conta não existente
 - [] NÃO excluir conta não existente
