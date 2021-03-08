@@ -17,13 +17,16 @@ const customers = [];
  */
 app.post('/account', (request, response) => {
   const { cpf, name } = request.body;
-  const id = uuidv4(); // Criação do ID através da v4 (utilizando números randômicos)
+  const customerAlreadyExists = customers.some(customer => customer.cpf === cpf); // verificar existencia de cpf
+
+  if (customerAlreadyExists)
+    return response.status(400).json({ error: "Customer already exists!" });
 
   // inserção dos dados no array (fake db)
   customers.push({
     cpf,
     name,
-    id,
+    id: uuidv4(), // Criação do ID através da v4 (utilizando números randômicos)
     statement: []
   });
 
