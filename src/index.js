@@ -3,23 +3,14 @@ const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 
-app.use(express.json()); // middleware para interpretação de json
+app.use(express.json());
 
-// representação de db via array
 const customers = [];
 
-// Criação de conta
-/**
- * cpf - string
- * name - string
- * id - uuid
- * statement []
- */
 app.post('/account', (request, response) => {
   const { cpf, name } = request.body;
-  const id = uuidv4(); // Criação do ID através da v4 (utilizando números randômicos)
+  const id = uuidv4();
 
-  // inserção dos dados no array (fake db)
   customers.push({
     cpf,
     name,
@@ -27,7 +18,6 @@ app.post('/account', (request, response) => {
     statement: []
   });
 
-  // confirmação de criação de conta
   return response.status(201).send();
 });
 
