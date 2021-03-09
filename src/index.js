@@ -99,7 +99,24 @@ app.post('/withdraw', verifyExistentAccountCPF, (request, response) => {
 
   customer.statement.push(statementOperation);
   return response.status(201).send();
-})
+});
+
+app.get('/statement/date', verifyExistentAccountCPF, (request, response) => {
+  const { customer } = request;
+  const { date } = request.query;
+
+  const dateFormat = new Date(date + " 00:00");
+
+  const statement = customer.statement.filter(statement => {
+    console.log(statement.created_at.toDateString());
+    console.log(dateFormat.toDateString());
+    console.log(statement);
+    statement.created_at.toDateString() === dateFormat.toDateString();
+  });
+
+  console.log(statement);
+  return response.json(statement);
+});
 
 app.listen(3000, () => {
   console.log('Server is up!');
