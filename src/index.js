@@ -101,6 +101,7 @@ app.post('/withdraw', verifyExistentAccountCPF, (request, response) => {
   return response.status(201).send();
 });
 
+//***  Busca de extrato por data - NOT WORKING
 app.get('/statement/date', verifyExistentAccountCPF, (request, response) => {
   const { customer } = request;
   const { date } = request.query;
@@ -118,6 +119,20 @@ app.get('/statement/date', verifyExistentAccountCPF, (request, response) => {
   return response.json(statement);
 });
 
+
+app.put('/account', verifyExistentAccountCPF, (request, response) => {
+  const { name } = request.body;
+  const { customer } = request;
+
+  customer.name = name;
+
+  return response.status(201).send();
+});
+
+app.get('/account', verifyExistentAccountCPF, (request, response) => {
+  const { customer } = request;
+  return response.json(customer);
+})
 app.listen(3000, () => {
   console.log('Server is up!');
 })

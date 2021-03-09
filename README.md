@@ -9,8 +9,8 @@
 - [x] Realizar depósito
 - [x] Realizar saque
 - [x] Buscar extrato do cliente por data
-- [] Atualizar dados da conta do cliente
-- [] Obter dados da conta do cliente
+- [x] Atualizar dados da conta do cliente
+- [x] Obter dados da conta do cliente
 - [] Deletar uma conta
 
 ---
