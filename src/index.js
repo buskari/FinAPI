@@ -132,7 +132,16 @@ app.put('/account', verifyExistentAccountCPF, (request, response) => {
 app.get('/account', verifyExistentAccountCPF, (request, response) => {
   const { customer } = request;
   return response.json(customer);
-})
+});
+
+app.delete('/account', verifyExistentAccountCPF, (request, response) => {
+  const { customer } = request;
+
+  customers.splice(customer, 1);
+
+  return response.json(customers);
+});
+
 app.listen(3000, () => {
   console.log('Server is up!');
 })
